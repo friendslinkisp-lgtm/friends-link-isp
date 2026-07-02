@@ -1,18 +1,16 @@
 async function testConnection() {
-    const { data, error } = await supabaseClient
-        .from('settings')
-        .select('*');
+  const { data, error } = await supabaseClient
+    .from("settings")
+    .select("*");
 
-    if (error) {
-        console.error("❌ Supabase Error:", error.message);
-        alert("Database connection failed!");
-        return;
-    }
+  if (error) {
+    console.log(error);
+    alert(error.message);
+    return;
+  }
 
-    console.log("✅ Connected Successfully");
-    console.log(data);
-
-    alert("Friend's Link ISP Database Connected Successfully!");
+  alert("Supabase Connected Successfully");
+  console.log(data);
 }
 
 testConnection();
