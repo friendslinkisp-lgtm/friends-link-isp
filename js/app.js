@@ -1,16 +1,30 @@
+// Friend's Link ISP
+// app.js
+
 async function testConnection() {
-  const { data, error } = await supabaseClient
-    .from("settings")
-    .select("*");
+    try {
+        const { data, error } = await supabaseClient
+            .from("settings")
+            .select("*");
 
-  if (error) {
-    console.log(error);
-    alert(error.message);
-    return;
-  }
+        if (error) {
+            console.error("❌ Supabase Error:", error);
+            alert("❌ Database Connection Failed!\n\n" + error.message);
+            return;
+        }
 
-  alert("Supabase Connected Successfully");
-  console.log(data);
+        console.log("✅ Supabase Connected Successfully");
+        console.table(data);
+
+        alert("✅ Friend's Link ISP Database Connected Successfully!");
+
+    } catch (err) {
+        console.error("❌ Unexpected Error:", err);
+        alert("Unexpected Error: " + err.message);
+    }
 }
 
-testConnection();
+// Run when page loads
+document.addEventListener("DOMContentLoaded", () => {
+    testConnection();
+});
